@@ -1,0 +1,87 @@
+
+
+def Cuarentena(centro):
+    
+    sku = 0
+    direccion = 0
+    cantidad =0
+    
+    WAREHOUSE = centro
+    
+    with open("cuarentena.txt","r") as archivo:
+        for valor in archivo:
+            lista = valor.split()
+            
+        
+            
+        
+            for j in lista:
+                if len(j) == 9:
+                    sku=j
+
+                if len(j) == 18:
+                    direccion=j
+
+                if len(j) == 1 or len(j) == 2 or len(j) ==3:
+                    cantida=j
+            print(f"{sku},{cantida},{WAREHOUSE},{direccion}")
+
+
+def INP(centro):
+    
+    sku = 0
+    direccion = 0
+    cantidad =0
+    
+    WAREHOUSE = centro
+    
+    with open("texto.txt","r") as archivo:
+        for valor in archivo:
+            lista = valor.split()
+            
+        
+            
+        
+            for j in lista:
+                if len(j) == 9:
+                    sku=j
+
+                if len(j) == 18:
+                    direccion=j
+
+                if len(j) == 1 or len(j) == 2 or len(j) ==3:
+                    cantida=j
+            print(f"{sku},{direccion},{cantida},{WAREHOUSE}")
+
+
+
+opcion =0
+while opcion !=4:
+    print("Elija una opcion:")
+    print("1-Cuarentena")
+    print("2-NA/NI")
+    print("3-Retiro de bienes de rezago")
+    opcion = int(input("Opcion:"))
+    
+    if opcion == 1 :
+        centro = input("Ingrese Warehouse:")
+        Cuarentena(centro)
+    if opcion == 2:
+        centro = input("Ingrese Wrehouse:")
+        INP(centro)
+        
+  
+        
+            
+           
+    
+            
+        
+        
+    
+    
+
+
+
+
+    
