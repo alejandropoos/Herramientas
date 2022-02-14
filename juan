@@ -1,0 +1,30 @@
+lista = []
+LISTAMENOR = []
+cont = 0
+contP = 0
+LINEAS =int(input("Cantidad de lineas por archivo?:"))
+with  open("archivos\\xd.txt","r") as Archivo:
+    for valor in Archivo:
+        
+            lista.append(valor)
+            cont +=1
+            
+            if cont == LINEAS :
+                cont = 0
+                with open(f"archivos\\ticket_{contP}.txt", 'a') as file:
+                        for i in lista: 
+                            file.write(i)
+
+                contP+=1    
+                lista.clear()            
+
+if cont <LINEAS:
+    for x in lista:
+        LISTAMENOR.append(x)
+                                  
+print(cont)           
+print(len(LISTAMENOR))   
+with open(f"archivos\\ticket_{contP}.txt", 'a') as sobra:
+    for valorSobra in LISTAMENOR:
+        sobra.write(valorSobra)        
+            
