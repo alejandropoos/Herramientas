@@ -14,4 +14,5 @@ RQ-0-002-000-00-00	GFHR33638	10
 RQ-0-002-000-00-00	CNEI50555	20
 RQ-0-002-000-00-00	TKTR84914	12
 
-en el otro scripr, podes poner cualquier numero o lo que sea (sin espacio creo)
+en el script ordenar te va a pedir que pongas un warehouse(cuando elijas una opcion), pone ARBA01
+en el script de dividir, tenes que crear una carpeta que se llame archivos y recien ahi poner el script, el script lee un archivo llamado xd.txt
