@@ -1,30 +1,40 @@
-lista = []
-LISTAMENOR = []
-cont = 0
-contP = 0
-LINEAS =int(input("Cantidad de lineas por archivo?:"))
-with  open("archivos\\xd.txt","r") as Archivo:
-    for valor in Archivo:
-        
-            lista.append(valor)
-            cont +=1
-            
-            if cont == LINEAS :
-                cont = 0
-                with open(f"archivos\\ticket_{contP}.txt", 'a') as file:
-                        for i in lista: 
-                            file.write(i)
+class DividirArchivos:
+    def __init__(self,LineasArchivo) -> None:
+        self.lista = list ()
+        self.listaMenor = list()
+        self.LineasArchivos = LineasArchivo
+        self.cont = 0
+        self.contP = 0
 
-                contP+=1    
-                lista.clear()            
-
-if cont <LINEAS:
-    for x in lista:
-        LISTAMENOR.append(x)
-                                  
-print(cont)           
-print(len(LISTAMENOR))   
-with open(f"archivos\\ticket_{contP}.txt", 'a') as sobra:
-    for valorSobra in LISTAMENOR:
-        sobra.write(valorSobra)        
+    def IterarArchivo(self):#iteramos toda la informacion recibida en el archivo input.txt y la agregamos a un archivo hasta llegar a lo preferido por el usuario
+        with  open("archivos\\input.txt","r") as Archivo:
+            for valor in Archivo:
             
+                self.lista.append(valor)
+                self.cont +=1 #contamos las lineas para saber cuantas lineas vamos
+                
+                if self.cont == self.LineasArchivos :
+                    self.cont = 0 #una vez llegado a la capacidad del archivo pedido por el ususario, reiniciamos el contador
+                    with open(f"archivos\\ticket_{self.contP}.txt", 'a') as file:
+                            for i in self.lista: 
+                                file.write(i)
+
+                    self.contP+=1    
+                    self.lista.clear()   
+
+    def RestoArchivo(self):# el resto de informacion en el archivo input es procesado aca
+        if self.cont <self.LineasArchivos:
+            for x in self.lista:
+                self.listaMenor.append(x)
+
+                
+          
+        with open(f"archivos\\ticket_{self.contP}.txt", 'a') as sobra:
+            for valorSobra in self.listaMenor:
+                sobra.write(valorSobra)
+
+if __name__ == "__main__":
+    Lineas = int(input("Cantidad de lineas por archivo?:"))
+    input = DividirArchivos(Lineas)
+    input.IterarArchivo()
+    input.RestoArchivo()
