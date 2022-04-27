@@ -1,0 +1,32 @@
+import requests
+import time
+listado_shipments=[]
+listado_shipments_sin_tag =[]
+def main():
+    with open('Blindaje//input.txt', 'r') as archivo1:
+        for i in archivo1:
+            listado_shipments.append(i.split())#si sacas el split no anda, manda una key error en el get
+        #print(listado_shipments)
+        for shipment in listado_shipments:
+            for x in shipment:
+                
+                #try:
+                    getTag = requests.get(f"http://internal-api.mercadolibre.com//shipments/{x}?caller.scopes=admin")
+                    contenido = getTag.json()
+                    tags = contenido["tags"]
+                    #print(tags)
+                    if "carrier_contingency" in tags:#nuevo, busca si dentro de tags hay carrier_contingency
+                        with open('tags.txt', 'a') as archivo:
+                            archivo.write(f"{x} \n")
+                    else:#de aca para abajo solo es nuevo, agrega a un archivo los shipments sin el tag
+                        listado_shipments_sin_tag.append(x)
+                        with open ("Blindaje\\No_tiene_blindaje.txt","w") as ArchivoSinTag:
+                            for Shipment_sin_tag in listado_shipments_sin_tag:
+                                ArchivoSinTag.write(Shipment_sin_tag + "\n")
+                            
+                    
+                #except Exception:
+                #    print("Error en la conexion")
+
+if __name__ == "__main__" :
+    main()
